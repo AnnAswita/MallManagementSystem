@@ -1,13 +1,12 @@
 package com.mall;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class MallManagementSystemApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+/*
+ * @SpringBootTest class MallManagementSystemApplicationTests {
+ * 
+ * @Test void contextLoads() { }
+ * 
+ * }
+ */

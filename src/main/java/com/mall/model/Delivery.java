@@ -13,11 +13,17 @@ public class Delivery{
     private String summary;
     
     private List<Item> items;
-   // private DeliveryStaff assignedStaff;
+    private DeliveryStaff assignedStaff;
     private Address address;
     private Goods goods;
     
 	
+	public DeliveryStaff getAssignedStaff() {
+		return assignedStaff;
+	}
+	public void setAssignedStaff(DeliveryStaff assignedStaff) {
+		this.assignedStaff = assignedStaff;
+	}
 	public Long getDeliveryId() {
 		return deliveryId;
 	}
