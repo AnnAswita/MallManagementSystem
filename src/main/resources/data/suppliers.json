@@ -1,0 +1,12 @@
+[
+  {
+    "supplierId": 401,
+    "name": "Urban Footwear Ltd",
+    "contactInfo": "support@urbanfootwear.com"
+  },
+  {
+    "supplierId": 402,
+    "name": "TechNova Distributors",
+    "contactInfo": "info@technova.com"
+  }
+]

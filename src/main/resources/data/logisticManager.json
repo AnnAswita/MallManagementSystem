@@ -1,0 +1,12 @@
+[
+  {
+    "staffId": 1,
+    "name": "John Carter",
+    "contactInfo": "john.carter@mall.com"
+  },
+  {
+    "staffId": 2,
+    "name": "Sophia Thomas",
+    "contactInfo": "sophia.thomas@mall.com"
+  }
+]

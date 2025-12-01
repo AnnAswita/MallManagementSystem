@@ -1,0 +1,16 @@
+[
+  {
+    "staffId": 3,
+    "name": "James Wilson",
+    "contactInfo": "james.wilson@mall.com",
+    "vehicle": "Van A12",
+    "route": "North Block"
+  },
+  {
+    "staffId": 4,
+    "name": "Maria Gomez",
+    "contactInfo": "maria.gomez@mall.com",
+    "vehicle": "Bike B21",
+    "route": "South Wing"
+  }
+]

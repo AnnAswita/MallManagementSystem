@@ -1,0 +1,14 @@
+[
+  {
+    "itemId": 301,
+    "type": "Footwear",
+    "name": "Running Shoes",
+    "quantity": 50
+  },
+  {
+    "itemId": 302,
+    "type": "Electronics",
+    "name": "Bluetooth Speaker",
+    "quantity": 20
+  }
+]

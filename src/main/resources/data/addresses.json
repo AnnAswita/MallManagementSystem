@@ -1,0 +1,14 @@
+[
+  {
+    "addressId": 101,
+    "street": "Block A Warehouse",
+    "city": "Limerick",
+    "postalCode": "V94 A1B2"
+  },
+  {
+    "addressId": 102,
+    "street": "Unit 14 Retail Wing",
+    "city": "Limerick",
+    "postalCode": "V94 X7D9"
+  }
+]

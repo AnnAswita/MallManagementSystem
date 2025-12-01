@@ -1,0 +1,25 @@
+[
+  {
+    "deliveryId": 1,
+    "status": "Created",
+    "invoice": "INV-001",
+    "summary": "Inbound delivery - stock arrival",
+    "addressId": 101,
+    "goodsId": 201,
+    "items": [],
+    "assignedStaffId": null
+  },
+  {
+    "deliveryId": 2,
+    "status": "Assigned",
+    "invoice": "INV-002",
+    "summary": "Outbound shipment to retail unit",
+    "addressId": 102,
+    "goodsId": null,
+    "items": [
+      { "itemId": 301, "quantity": 10 },
+      { "itemId": 302, "quantity": 5 }
+    ],
+    "assignedStaffId": 3
+  }
+]
