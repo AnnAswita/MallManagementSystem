@@ -9,7 +9,7 @@ public class Agreement {
     private String duration;
     private double deposit;
     private String conditions;
-    private Long shopId; // Instead of Shop object
+    private Long shopId; 
 
     public Agreement() {}
 

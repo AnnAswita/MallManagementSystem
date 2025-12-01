@@ -7,7 +7,12 @@ public interface IAgreementService {
 
     Agreement createAgreement(double rentAmount, String duration, double deposit, String conditions, long shopId);
 
+    Agreement updateAgreement(long agreementId, double rentAmount, String duration, double deposit, String conditions);
+
+    Agreement getAgreementById(long agreementId);
+
     List<Agreement> getAllAgreements();
+
 
     // Observer interface
     interface AgreementObserver {
