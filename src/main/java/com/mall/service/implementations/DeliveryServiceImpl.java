@@ -1,5 +1,6 @@
 package com.mall.service.implementations;
 
+import com.mall.factory.DeliveryFactory;
 import com.mall.model.Address;
 import com.mall.model.Delivery;
 import com.mall.model.DeliveryStaff;
@@ -11,6 +12,8 @@ import com.mall.repository.DeliveryStaffRepository;
 import com.mall.repository.GoodsRepository;
 import com.mall.repository.ItemRepository;
 import com.mall.service.interfaces.IDeliveryService;
+import com.mall.state.ScheduledState;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -37,32 +40,34 @@ public class DeliveryServiceImpl implements IDeliveryService{
     @Override
     public Delivery createDelivery(Long goodsId, Long addressId, List<Long> itemIds) {
 
-        List<Delivery> deliveries = deliveryRepo.load();
+    	List<Delivery> deliveries = deliveryRepo.load();
+        Long newId = (long) (deliveries.size() + 1);
 
-        Delivery d = new Delivery();
-        d.setDeliveryId((long) (deliveries.size() + 1));
-        d.setStatus("PENDING");
-
-        // map goods
+        // Load Goods
         Goods goods = goodsRepo.loadGoods().stream()
-                .filter(g -> g.getGoodsId() == goodsId)
+                .filter(g -> g.getGoodsId().equals(goodsId))
                 .findFirst()
                 .orElse(null);
-        d.setGoods(goods);
 
-        // map address
-        Address addr = addressRepo.loadAddresses().stream()
-                .filter(a -> a.getAddressId() == addressId)
+        // Load Address
+        Address address = addressRepo.loadAddresses().stream()
+                .filter(a -> a.getAddressId().equals(addressId))
                 .findFirst()
                 .orElse(null);
-        d.setAddress(addr);
 
-        // map items
+        // Load Items
         List<Item> allItems = itemRepo.loadItems();
         List<Item> selectedItems = allItems.stream()
                 .filter(i -> itemIds.contains(i.getItemId()))
                 .toList();
-        d.setItems(selectedItems);
+
+        // FACTORY PATTERN
+        Delivery d = DeliveryFactory.createDelivery(
+                newId,
+                goods,
+                address,
+                selectedItems
+        );
 
         deliveries.add(d);
         deliveryRepo.save(deliveries);
@@ -94,7 +99,9 @@ public class DeliveryServiceImpl implements IDeliveryService{
         for (Delivery d : deliveries) {
             if (d.getDeliveryId().equals(deliveryId)) {
                 d.setAssignedStaff(staff);
-                d.setStatus("SCHEDULED");
+                
+                //STATE PATTERN
+                d.setState(new ScheduledState());
 
                 deliveryRepo.save(deliveries);
                 return d;
@@ -102,4 +109,21 @@ public class DeliveryServiceImpl implements IDeliveryService{
         }
         return null;
 	}
+	
+	@Override
+	public Delivery updateStatus(Long deliveryId) {
+	    List<Delivery> list = deliveryRepo.load();
+
+	    for (Delivery d : list) {
+	        if (d.getDeliveryId().equals(deliveryId)) {
+	        	
+	        	//Move to next State
+	            d.getState().next(d);
+	            deliveryRepo.save(list);
+	            return d;
+	        }
+	    }
+	    return null;
+	}
+
 }

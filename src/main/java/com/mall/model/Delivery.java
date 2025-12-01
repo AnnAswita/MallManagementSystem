@@ -5,6 +5,8 @@ package com.mall.model;
 
 import java.util.List;
 
+import com.mall.state.DeliveryState;
+
 public class Delivery{
 	
     private Long deliveryId;
@@ -16,7 +18,8 @@ public class Delivery{
     private DeliveryStaff assignedStaff;
     private Address address;
     private Goods goods;
-    
+    private DeliveryState state;
+
 	
 	public DeliveryStaff getAssignedStaff() {
 		return assignedStaff;
@@ -68,9 +71,13 @@ public class Delivery{
 		this.items = items;
 	}
     
-    
-    
-    
-    
+    public DeliveryState getState() {
+        return state;
+    }
 
+    public void setState(DeliveryState state) {
+        this.state = state;
+        this.status = state.getStatus();
+    }
+    
 }

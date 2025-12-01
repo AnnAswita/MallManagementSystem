@@ -9,4 +9,5 @@ public interface IDeliveryService {
 	 Delivery createDelivery(Long goodsId, Long addressId, List<Long> itemIds);
 	 List<Delivery> getPendingDeliveries();
 	 Delivery assignDelivery(Long deliveryId, Long staffId);
+	 Delivery updateStatus(Long deliveryId);
 }
