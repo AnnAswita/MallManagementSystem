@@ -1,15 +1,15 @@
-package com.mall.entity;
+package com.mall.model;
 
-public class ShopManager {
+public class MallAdmin {
 
     private Long id;
     private String name;
     private String email;
     private String phone;
 
-    public ShopManager() { }
+    public MallAdmin() { }
 
-    public ShopManager(Long id, String name, String email, String phone) {
+    public MallAdmin(Long id, String name, String email, String phone) {
         this.id = id;
         this.name = name;
         this.email = email;

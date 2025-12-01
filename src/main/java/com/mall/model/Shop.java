@@ -1,4 +1,4 @@
-package com.mall.entity;
+package com.mall.model;
 
 import java.util.List;
 

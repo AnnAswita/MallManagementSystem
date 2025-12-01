@@ -1,4 +1,4 @@
-package com.mall.entity;
+package com.mall.model;
 
 public class Agreement {
 
