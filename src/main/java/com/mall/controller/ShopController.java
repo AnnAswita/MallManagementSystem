@@ -27,4 +27,22 @@ public class ShopController {
     public List<Shop> getAllShops() {
         return shopService.getAllShops();
     }
+    //get shop by id
+    @GetMapping("/{id}")
+    public Shop getShopById(@PathVariable long id) {
+        return shopService.getShopById(id);
+    }
+    //update shop by id
+    @PutMapping("/{id}")
+    public Shop updateShop(@PathVariable long id,
+                       @RequestBody Shop shopRequest) {
+        return shopService.updateShop(
+        id,
+        shopRequest.getArea(),
+        shopRequest.getRent(),
+        shopRequest.getTenantInfo()
+        );
+    }
+
 }
+

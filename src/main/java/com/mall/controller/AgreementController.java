@@ -14,25 +14,35 @@ public class AgreementController {
     @Autowired
     private IAgreementService agreementService;
 
-    // Register a simple observer (example)
-    public AgreementController() {
-        // This could be replaced with a real MallManager observer class
-        agreementService.registerObserver((agreementId, status) ->
-                System.out.println("Observer: Agreement " + agreementId + " status: " + status)
-        );
-    }
-
-    // Create a new agreement
+    // Create Agreement
     @PostMapping("/create")
     public Agreement createAgreement(@RequestParam double rentAmount,
                                      @RequestParam String duration,
                                      @RequestParam double deposit,
                                      @RequestParam String conditions,
                                      @RequestParam long shopId) {
-        return agreementService.createAgreement(rentAmount, duration, deposit, conditions, shopId);
+        return agreementService.createAgreement(
+                rentAmount, duration, deposit, conditions, shopId
+        );
     }
 
-    // Get all agreements
+    // Update Agreement
+    @PutMapping("/update/{id}")
+    public Agreement updateAgreement(@PathVariable long id,
+                                     @RequestParam double rentAmount,
+                                     @RequestParam String duration,
+                                     @RequestParam double deposit,
+                                     @RequestParam String conditions) {
+        return agreementService.updateAgreement(id, rentAmount, duration, deposit, conditions);
+    }
+
+    // Fetch one
+    @GetMapping("/{id}")
+    public Agreement getAgreement(@PathVariable long id) {
+        return agreementService.getAgreementById(id);
+    }
+
+    // Fetch all
     @GetMapping("/all")
     public List<Agreement> getAllAgreements() {
         return agreementService.getAllAgreements();
