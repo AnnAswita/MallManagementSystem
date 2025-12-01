@@ -35,3 +35,4 @@ public class ShopFileRepository implements IShopRepository {
             throw new RuntimeException("Error writing shops.json", e);
         }
     }
+}
