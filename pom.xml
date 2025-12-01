@@ -8,11 +8,19 @@
 		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+<<<<<<< HEAD
 	<groupId>com.example</groupId>
 	<artifactId>MallManagementSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>MallManagementSystem</name>
 	<description>Design project for mall services</description>
+=======
+	<groupId>com.mall</groupId>
+	<artifactId>MallManagementSystem</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>MallManagementSystem</name>
+	<description>Mall Management System Application (Advance Software Design Project)</description>
+>>>>>>> origin/ann
 	<url/>
 	<licenses>
 		<license/>
@@ -32,10 +40,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+<<<<<<< HEAD
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+=======
+>>>>>>> origin/ann
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
@@ -51,11 +62,14 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+<<<<<<< HEAD
 			<artifactId>spring-boot-starter-freemarker-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+=======
+>>>>>>> origin/ann
 			<artifactId>spring-boot-starter-thymeleaf-test</artifactId>
 			<scope>test</scope>
 		</dependency>
