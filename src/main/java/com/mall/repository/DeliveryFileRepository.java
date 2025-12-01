@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.mall.models.Delivery;
+import com.mall.model.Delivery;
 
 import tools.jackson.databind.ObjectMapper;
 
@@ -17,32 +17,24 @@ import tools.jackson.databind.ObjectMapper;
  */
 public class DeliveryFileRepository {
 	
-	private static final String FILE_PATH = "src/main/resources/data/deliveries.json";
-
+    private static final String FILE_PATH = "src/main/resources/data/deliveryStaff.json";
     private final ObjectMapper mapper = new ObjectMapper();
 
-    public List<Delivery> loadDeliveries() {
-        try {
-            File file = new File(FILE_PATH);
-
-            if (!file.exists()) {
-                return new ArrayList<>();
-            }
-
-            return Arrays.asList(mapper.readValue(file, Delivery[].class));
-
-        } catch (Exception e) {
-            throw new RuntimeException("Error reading deliveries.json", e);
-        }
-    }
-
-    public void saveDeliveries(List<Delivery> deliveries) {
-        try {
-            mapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(new File(FILE_PATH), deliveries);
-        } catch (Exception e) {
-            throw new RuntimeException("Error writing deliveries.json", e);
-        }
-    }
+	/*
+	 * public List<DeliveryStaff> loadDeliveryStaff() { try { File file = new
+	 * File(FILE_PATH);
+	 * 
+	 * if (!file.exists()) return new ArrayList<>();
+	 * 
+	 * // return Arrays.asList(mapper.readValue(file, DeliveryStaff[].class));
+	 * 
+	 * } catch (Exception e) { throw new
+	 * RuntimeException("Error reading deliveryStaff.json", e); } }
+	 * 
+	 * public void saveDeliveryStaff(List<DeliveryStaff> staffList) { try {
+	 * mapper.writerWithDefaultPrettyPrinter() .writeValue(new File(FILE_PATH),
+	 * staffList); } catch (Exception e) { throw new
+	 * RuntimeException("Error writing deliveryStaff.json", e); } }
+	 */
 
 }

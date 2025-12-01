@@ -1,7 +1,7 @@
 /**
  * author : carolin.thomas
  */
-package com.mall.models;
+package com.mall.model;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class Delivery{
     private String summary;
     
     private List<Item> items;
-    private DeliveryStaff assignedStaff;
+   // private DeliveryStaff assignedStaff;
     private Address address;
     private Goods goods;
     
@@ -42,12 +42,7 @@ public class Delivery{
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-	public DeliveryStaff getAssignedStaff() {
-		return assignedStaff;
-	}
-	public void setAssignedStaff(DeliveryStaff assignedStaff) {
-		this.assignedStaff = assignedStaff;
-	}
+
 	public Address getAddress() {
 		return address;
 	}

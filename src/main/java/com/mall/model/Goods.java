@@ -1,7 +1,7 @@
 /**
  * author : carolin.thomas
  */
-package com.mall.models;
+package com.mall.model;
 
 /**
  * 
