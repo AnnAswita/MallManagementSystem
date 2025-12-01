@@ -1,4 +1,4 @@
-package com.mall.repository.impl;
+package com.mall.repository;
 
 import com.mall.model.Agreement;
 import com.mall.repository.IAgreementRepository;

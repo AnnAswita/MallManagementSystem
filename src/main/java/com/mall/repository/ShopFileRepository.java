@@ -1,4 +1,4 @@
-package com.mall.repository.impl;
+package com.mall.repository;
 
 import com.mall.model.Shop;
 import com.mall.repository.IShopRepository;

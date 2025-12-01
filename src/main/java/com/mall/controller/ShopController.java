@@ -1,10 +1,10 @@
 package com.mall.controller;
 
-import com.mall.entity.Shop;
-import com.mall.service.ShopService;
+import com.mall.model.Shop;
+import com.mall.service.interfaces.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -12,31 +12,19 @@ import java.util.List;
 public class ShopController {
 
     @Autowired
-    private ShopService shopService;
+    private IShopService shopService;
 
-    @PostMapping
-    public ResponseEntity<Shop> createShop(@RequestBody Shop shop) {
-        return ResponseEntity.ok(shopService.createShop(shop));
+    // Create a new shop
+    @PostMapping("/create")
+    public Shop createShop(@RequestParam double area,
+                           @RequestParam double rent,
+                           @RequestParam String tenantInfo) {
+        return shopService.createShop(area, rent, tenantInfo);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Shop> getShopById(@PathVariable Long id) {
-        return ResponseEntity.ok(shopService.getShopById(id));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Shop>> getAllShops() {
-        return ResponseEntity.ok(shopService.getAllShops());
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Shop> updateShop(@PathVariable Long id, @RequestBody Shop updatedShop) {
-        return ResponseEntity.ok(shopService.updateShop(id, updatedShop));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteShop(@PathVariable Long id) {
-        shopService.deleteShop(id);
-        return ResponseEntity.ok("Shop deleted successfully");
+    // Get all shops
+    @GetMapping("/all")
+    public List<Shop> getAllShops() {
+        return shopService.getAllShops();
     }
 }
