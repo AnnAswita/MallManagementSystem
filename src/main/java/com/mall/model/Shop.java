@@ -1,7 +1,8 @@
-package com.mall.entity;
-
+package com.mall.model;
+import lombok.Data;
 import java.util.List;
 
+@Data
 public class Shop {
 
     private Long shopID;

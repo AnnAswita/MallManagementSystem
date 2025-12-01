@@ -1,7 +1,7 @@
 package com.mall.service;
 
 import com.mall.entity.Shop;
-import com.mall.repository.ShopJsonRepository;
+import com.mall.repository.ShopFileRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ShopService {
 
-    private final ShopJsonRepository repository = new ShopJsonRepository();
+    private final ShopFileRepository repository = new ShopJsonRepository();
 
     public Shop createShop(Shop shop) {
         return repository.save(shop);

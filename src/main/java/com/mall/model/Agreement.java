@@ -1,5 +1,7 @@
-package com.mall.entity;
+package com.mall.model;
+import lombok.Data;
 
+@Data
 public class Agreement {
 
     private Long id;
