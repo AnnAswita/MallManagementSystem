@@ -17,7 +17,7 @@ public class ScheduleDeliveryCommand implements Command {
 
     @Override
     public void execute() {
-        Delivery d = logisticsService.scheduleDelivery(deliveryID, staffID);
-        System.out.println("[CMD] Scheduled delivery: " + (d != null ? d.getDeliveryID() : "NOT_FOUND"));
+        Delivery d = logisticsService.scheduleDelivery(deliveryId, staffId);
+        System.out.println("[CMD] Scheduled delivery: " + (d != null ? d.getDeliveryId() : "NOT_FOUND"));
     }
 }

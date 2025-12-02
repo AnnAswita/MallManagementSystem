@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mall.model.Delivery;
+import com.mall.decorator.DeliveryFee;
 import com.mall.decorator.BaseDeliveryFee;
 import com.mall.decorator.ExpressDeliveryFee;
 import com.mall.decorator.WeightFeeDecorator;
@@ -34,7 +35,7 @@ public class LogisticsServiceImpl implements ILogisticsService {
         if (d == null) return null;
 
         // Fee calculation (Decorator)
-        var fee = new BaseDeliveryFee();
+        DeliveryFee fee = new BaseDeliveryFee();
         if ("EXPRESS".equalsIgnoreCase(d.getType())) {
         	fee = new ExpressDeliveryFee(fee);
         }
