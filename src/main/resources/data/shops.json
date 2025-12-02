@@ -1,0 +1,20 @@
+[
+  {
+    "shopID": 1,
+    "area": 120.5,
+    "rent": 1500.0,
+    "tenantInfo": "ABC Fashion Store"
+  },
+  {
+    "shopID": 2,
+    "area": 85.0,
+    "rent": 1200.0,
+    "tenantInfo": "XYZ Electronics"
+  },
+  {
+    "shopID": 3,
+    "area": 60.0,
+    "rent": 900.0,
+    "tenantInfo": "Home Decor Mart"
+  }
+]
