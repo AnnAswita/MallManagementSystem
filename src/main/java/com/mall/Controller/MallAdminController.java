@@ -1,27 +1,51 @@
-package com.mall.Controller;
+package com.mall.controller;
+ 
+import com.mall.model.Shop;
 
-import com.mall.service.AgreementService;
+import com.mall.service.interfaces.IShopService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
-
+ 
 @RestController
+
 @RequestMapping("/mall-admin")
+
 public class MallAdminController {
-
-    private final AgreementService agreementService;
-
+ 
     @Autowired
-    public MallAdminController(AgreementService agreementService) {
-        this.agreementService = agreementService;
+
+    private IShopService shopService;
+ 
+    @PostMapping("/add-layout")
+
+    public String addMallLayout() {
+
+        return "Mall layout added.";
+
+    }
+ 
+    @PostMapping("/create-shop")
+
+    public Shop createShop(@RequestParam double area,
+
+                           @RequestParam double rent,
+
+                           @RequestParam String tenantInfo) {
+
+        return shopService.createShop(area, rent, tenantInfo);
+
+    }
+ 
+    @PostMapping("/approve-agreement")
+
+    public String approveAgreement(@RequestParam long agreementId) {
+
+        return "Agreement " + agreementId + " approved.";
+
     }
 
-    @PutMapping("/agreements/{id}/approve")
-    public String approveAgreement(@PathVariable("id") Long agreementId) {
-        return agreementService.approveAgreement(agreementId);
-    }
-
-    @GetMapping("/agreements")
-    public String viewAllAgreements() {
-        return agreementService.listAllAgreements();
-    }
 }
+
+ 
