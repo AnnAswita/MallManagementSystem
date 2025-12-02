@@ -55,17 +55,19 @@ public class MallManagerController implements IAgreementService.AgreementObserve
 
     }
  
-    @PostMapping("/shops")
 
-    public Shop createShop(@RequestParam double area,
+    @PostMapping("/agreements")
 
-                           @RequestParam double rent,
+    public Agreement createAgreement(@RequestParam double rentAmount,
+                                @RequestParam String duration,
+                                @RequestParam double deposit,
+                                @RequestParam String conditions,
+                                @RequestParam long shopId) {
 
-                           @RequestParam String tenantInfo) {
-
-        return shopService.createShop(area, rent, tenantInfo);
+        return agreementService.createAgreement(rentAmount, duration, deposit, conditions, shopId);
 
     }
+
 
     @GetMapping("/shops")
 
