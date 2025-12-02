@@ -26,7 +26,8 @@ public class DeliveryController {
     @PutMapping("/{id}/status")
     public String updateStatus(@PathVariable Long id, @RequestParam String status) {
         CommandInvoker invoker = new CommandInvoker();
-        invoker.addCommand(new UpdateStatusCommand(deliveryService, id));
+        UpdateStatusCommand cmd = new UpdateStatusCommand(deliveryService, id);
+        invoker.addCommand(cmd);
         invoker.executeAll();
         return "OK";
     }

@@ -18,11 +18,11 @@ import com.mall.service.interfaces.INotificationService;
 public class ShopManagerController {
 
     private final IDeliveryService deliveryService;
-    private final INotificationService notificationService;
+    //private final INotificationService notificationService;
 
     public ShopManagerController(IDeliveryService deliveryService, INotificationService notificationService) {
         this.deliveryService = deliveryService;
-        this.notificationService = notificationService;
+        //this.notificationService = notificationService;
     }
 
     @PostMapping("/requestDelivery")
@@ -40,12 +40,9 @@ public class ShopManagerController {
         invoker.addCommand(createCmd);
         invoker.executeAll();
 
-        // find the last created delivery (simple approach)
-        Delivery d = deliveryService.getPendingDeliveries().stream().reduce((first, second) -> second).orElse(null);
-
         // notify logistics manager (observer)
         //if (d != null) notificationService.notifyObserver(logisticsManagerID, "New Delivery Request Received: " + d.getDeliveryId());
 
-        return d;
+        return createCmd.getResult();
     }
 }

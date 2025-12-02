@@ -27,8 +27,10 @@ public class LogisticsController {
     @PostMapping("/schedule")
     public Delivery schedule(@RequestParam Long deliveryId, @RequestParam Long staffId) {
         CommandInvoker invoker = new CommandInvoker();
-        invoker.addCommand(new ScheduleDeliveryCommand(logisticsService, deliveryId, staffId));
+        ScheduleDeliveryCommand cmd = new ScheduleDeliveryCommand(logisticsService, deliveryId, staffId);
+        invoker.addCommand(cmd);
         invoker.executeAll();
-        return logisticsService.scheduleDelivery(deliveryId, staffId);
+        
+        return cmd.getResult();
     }
 }

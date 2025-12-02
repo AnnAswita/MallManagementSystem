@@ -14,6 +14,7 @@ public class CreateDeliveryCommand implements Command {
     private final String size;
     private final List<Long> itemIds;
 
+    private Delivery result;
     public CreateDeliveryCommand(IDeliveryService deliveryService,Long goodsId, Long addressId, String type, double weight, String size, List<Long> itemIds) {
         this.deliveryService = deliveryService;
         this.goodsId = goodsId;
@@ -26,7 +27,11 @@ public class CreateDeliveryCommand implements Command {
 
     @Override
     public void execute() {
-        Delivery d = deliveryService.createDelivery(goodsId, addressId, type, weight, size, itemIds);
-        System.out.println("[CMD] Created delivery " + d.getDeliveryId());
+        this.result = deliveryService.createDelivery(goodsId, addressId, type, weight, size, itemIds);
+        System.out.println("[CMD] Created delivery " + result.getDeliveryId());
+    }
+    
+    public Delivery getResult() {
+        return result;
     }
 }

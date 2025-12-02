@@ -8,7 +8,8 @@ public class ScheduleDeliveryCommand implements Command {
     private final ILogisticsService logisticsService;
     private final Long deliveryId;
     private final Long staffId;
-
+    private Delivery result;
+    
     public ScheduleDeliveryCommand(ILogisticsService logisticsService, Long deliveryId, Long staffId) {
         this.logisticsService = logisticsService; 
         this.deliveryId = deliveryId; 
@@ -17,7 +18,11 @@ public class ScheduleDeliveryCommand implements Command {
 
     @Override
     public void execute() {
-        Delivery d = logisticsService.scheduleDelivery(deliveryId, staffId);
-        System.out.println("[CMD] Scheduled delivery: " + (d != null ? d.getDeliveryId() : "NOT_FOUND"));
+        this.result = logisticsService.scheduleDelivery(deliveryId, staffId);
+        System.out.println("[CMD] Scheduled delivery " + deliveryId + " with staff " + staffId);
+    }
+    
+    public Delivery getResult() {
+        return result;
     }
 }

@@ -16,6 +16,6 @@ public class UpdateStatusCommand implements Command {
 	@Override
     public void execute() {
         deliveryService.updateStatus(deliveryID);
-        //System.out.println("[CMD] Updated status " + deliveryID + " -> " + newStatus);
+        System.out.println("[CMD] Updated status " + deliveryID );
     }
 }
