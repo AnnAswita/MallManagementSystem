@@ -13,7 +13,7 @@ import com.mall.state.PendingState;
 
 
 public class DeliveryFactory {
-    public static Delivery createDelivery(Long id, Goods goods, Address address, List<Item> items) {
+    public static Delivery createDelivery(Long id, Goods goods, Address address, List<Item> items, String type, double weightKg, String sizeCategory) {
 
         Delivery d = new Delivery();
 
@@ -21,8 +21,10 @@ public class DeliveryFactory {
         d.setGoods(goods);
         d.setAddress(address);
         d.setItems(items);
-
-        //Default Statuss
+        d.setType(type);
+        d.setWeight(weightKg);
+        d.setSizeCategory(sizeCategory);
+        //Default Status
         d.setState(new PendingState());
 
         return d;

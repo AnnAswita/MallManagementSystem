@@ -1,7 +1,6 @@
 package com.mall.service.implementations;
 
 import com.mall.model.DeliveryStaff;
-import com.mall.model.Staff;
 import com.mall.repository.DeliveryStaffRepository;
 import com.mall.service.interfaces.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -13,7 +13,9 @@ public class Delivery{
     private String status;
     private String invoice;
     private String summary;
-    
+    private String type; // NORMAL, EXPRESS
+    private double weightKg;
+    private String sizeCategory; //SMALL, MEDIUM, LARGE
     private List<Item> items;
     private DeliveryStaff assignedStaff;
     private Address address;
@@ -80,4 +82,22 @@ public class Delivery{
         this.status = state.getStatus();
     }
     
+    public void setType(String type) {
+    	this.type = type;
+    }
+    public String getType() {
+    	return type;
+    }
+    public void setWeight(double weightKg) {
+    	this.weightKg = weightKg;
+    }
+    public double getWeight() {
+    	return weightKg;
+    }
+    public void setSizeCategory(String sizeCategory) {
+    	this.sizeCategory = sizeCategory;
+    }
+    public String getSizeCategory() {
+    	return sizeCategory;
+    }
 }

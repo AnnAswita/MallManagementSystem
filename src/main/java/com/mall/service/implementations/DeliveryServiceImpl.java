@@ -38,11 +38,11 @@ public class DeliveryServiceImpl implements IDeliveryService{
     private ItemRepository itemRepo;
 
     @Override
-    public Delivery createDelivery(Long goodsId, Long addressId, List<Long> itemIds) {
+    public Delivery createDelivery(Long goodsId, Long addressId, String type, double weight, String sizeCategory, List<Long> itemIds) {
 
     	List<Delivery> deliveries = deliveryRepo.load();
         Long newId = (long) (deliveries.size() + 1);
-
+       
         // Load Goods
         Goods goods = goodsRepo.loadGoods().stream()
                 .filter(g -> g.getGoodsId().equals(goodsId))
@@ -54,19 +54,23 @@ public class DeliveryServiceImpl implements IDeliveryService{
                 .filter(a -> a.getAddressId().equals(addressId))
                 .findFirst()
                 .orElse(null);
-
+      
+        
         // Load Items
         List<Item> allItems = itemRepo.loadItems();
         List<Item> selectedItems = allItems.stream()
                 .filter(i -> itemIds.contains(i.getItemId()))
                 .toList();
-
+        
         // FACTORY PATTERN
         Delivery d = DeliveryFactory.createDelivery(
                 newId,
                 goods,
                 address,
-                selectedItems
+                selectedItems,
+                type,
+                weight,
+                sizeCategory
         );
 
         deliveries.add(d);
@@ -74,7 +78,14 @@ public class DeliveryServiceImpl implements IDeliveryService{
 
         return d;
     }
-
+    
+    @Override
+    public Delivery getDelivery(Long deliveryId) {
+        return deliveryRepo.load().stream()
+                .filter(d -> d.getDeliveryId().equals(deliveryId))
+                .findFirst().orElse(null);
+    }
+    
     @Override
     public List<Delivery> getPendingDeliveries() {
         return deliveryRepo.load().stream()
