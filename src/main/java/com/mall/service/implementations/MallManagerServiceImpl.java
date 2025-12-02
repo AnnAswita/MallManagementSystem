@@ -43,12 +43,12 @@ public class MallManagerServiceImpl implements IMallManagerService {
     // -------------------------
     @Override
     public double generateMonthlyInvoice(long shopId, double maintenanceFee, double tax, double lateFee) {
-
+            // 1. Get all agreements for this shop
         List<Agreement> shopAgreements = agreementService.getAllAgreements()
                 .stream()
                 .filter(a -> a.getShopId() == shopId)
                 .toList();
-
+                  // 2. Base amount = sum of rentAmount
         double baseAmount = shopAgreements.stream()
                 .mapToDouble(Agreement::getRentAmount)
                 .sum();

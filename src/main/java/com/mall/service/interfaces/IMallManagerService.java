@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IMallManagerService {
 
-    // Manager-specific operations
+
     String manageInvoices();
 
     String supervise();
