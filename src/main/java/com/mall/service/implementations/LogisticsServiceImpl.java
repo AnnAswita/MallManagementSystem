@@ -54,8 +54,8 @@ public class LogisticsServiceImpl implements ILogisticsService {
     }
 
     @Override
-    public void updateDeliveryStatus(Long deliveryId, String status) {
-        deliveryService.updateStatus(deliveryId);
+    public void updateDeliveryStatus(Long deliveryId, String status,Long staffId) {
+        deliveryService.updateStatus(deliveryId,staffId);
         Delivery d = deliveryService.getDelivery(deliveryId);
 //        if (d != null && d.getAssignedStaffId() != null) {
 //            notificationService.notifyObserver(d.getAssignedStaffID(), "Delivery " + deliveryID + " status -> " + status);

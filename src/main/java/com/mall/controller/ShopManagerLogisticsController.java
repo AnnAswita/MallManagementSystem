@@ -12,18 +12,15 @@ import com.mall.command.CommandInvoker;
 import com.mall.command.CreateDeliveryCommand;
 import com.mall.model.Delivery;
 import com.mall.service.interfaces.IDeliveryService;
-import com.mall.service.interfaces.INotificationService;
 
 @RestController
 @RequestMapping("/shopmanager")
 public class ShopManagerLogisticsController {
 
     private final IDeliveryService deliveryService;
-    //private final INotificationService notificationService;
 
-    public ShopManagerLogisticsController(IDeliveryService deliveryService, INotificationService notificationService) {
+    public ShopManagerLogisticsController(IDeliveryService deliveryService) {
         this.deliveryService = deliveryService;
-        //this.notificationService = notificationService;
     }
 
     @PostMapping("/requestDelivery")
@@ -35,8 +32,6 @@ public class ShopManagerLogisticsController {
         invoker.addCommand(createCmd);
         invoker.executeAll();
 
-        // notify logistics manager (observer)
-        //if (d != null) notificationService.notifyObserver(logisticsManagerID, "New Delivery Request Received: " + d.getDeliveryId());
 
         return createCmd.getResult();
     }

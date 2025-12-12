@@ -8,19 +8,35 @@ import com.mall.model.Delivery;
 public class DeliveredState implements DeliveryState{
 
 	@Override
-	public void next(Delivery delivery) {
-        System.out.println("Already delivered. No next state.");
-		
-	}
+    public void schedule(Delivery delivery) {
+        throw new IllegalStateException(
+            "Delivered delivery cannot be rescheduled"
+        );
+    }
 
-	@Override
-	public void prev(Delivery delivery) {
-        delivery.setState(new InTransitState());		
-	}
+    @Override
+    public void startDelivery(Delivery delivery) {
+        throw new IllegalStateException(
+            "Delivery already completed"
+        );
+    }
 
-	@Override
-	public String getStatus() {
+    @Override
+    public void completeDelivery(Delivery delivery) {
+        throw new IllegalStateException(
+            "Delivery already completed"
+        );
+    }
+
+    @Override
+    public void cancel(Delivery delivery) {
+        throw new IllegalStateException(
+            "Delivered delivery cannot be cancelled"
+        );
+    }
+
+    @Override
+    public String getStatus() {
         return "DELIVERED";
-	}
-
+    }
 }

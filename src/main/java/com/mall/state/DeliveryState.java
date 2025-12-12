@@ -7,8 +7,13 @@ import com.mall.model.Delivery;
 
 
 public interface DeliveryState {
-	    void next(Delivery delivery);
-	    void prev(Delivery delivery);
-	    String getStatus();
+    void schedule(Delivery delivery);
 
+    void startDelivery(Delivery delivery);
+
+    void completeDelivery(Delivery delivery);
+
+    void cancel(Delivery delivery);
+
+    String getStatus();
 }

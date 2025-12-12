@@ -10,5 +10,6 @@ public interface IDeliveryService {
 	 Delivery getDelivery(Long deliveryID);
 	 List<Delivery> getPendingDeliveries();
 	 Delivery assignDelivery(Long deliveryId, Long staffId);
-	 Delivery updateStatus(Long deliveryId);
+	 Delivery updateStatus(Long deliveryId, Long staffId);
+	 Delivery cancelDelivery(Long deliveryId, Long staffId);
 }

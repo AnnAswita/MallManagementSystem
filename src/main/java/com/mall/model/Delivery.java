@@ -100,4 +100,21 @@ public class Delivery{
     public String getSizeCategory() {
     	return sizeCategory;
     }
+    
+    public void schedule() {
+        state.schedule(this);
+    }
+
+    public void startDelivery() {
+        state.startDelivery(this);
+    }
+
+    public void completeDelivery() {
+        state.completeDelivery(this);
+    }
+
+    public void cancel() {
+        state.cancel(this);
+    }
+
 }

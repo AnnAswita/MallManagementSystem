@@ -2,6 +2,7 @@
 package com.mall.service.implementations;
 
 import com.mall.factory.DeliveryFactory;
+import com.mall.factory.DeliveryFactoryProvider;
 import com.mall.model.Address;
 import com.mall.model.Delivery;
 import com.mall.model.DeliveryStaff;
@@ -64,14 +65,15 @@ public class DeliveryServiceImpl implements IDeliveryService{
                 .toList();
         
         // FACTORY PATTERN
-        Delivery d = DeliveryFactory.createDelivery(
-                newId,
-                goods,
-                address,
-                selectedItems,
-                type,
-                weight,
-                sizeCategory
+		/*
+		 * Delivery d = DeliveryFactory.createDelivery( newId, goods, address,
+		 * selectedItems, type, weight, sizeCategory );
+		 */
+        DeliveryFactory factory =
+                DeliveryFactoryProvider.getFactory(type);
+
+        Delivery d = factory.createDelivery(
+                newId, goods, address, selectedItems, weight, sizeCategory
         );
 
         deliveries.add(d);
@@ -98,40 +100,76 @@ public class DeliveryServiceImpl implements IDeliveryService{
 
 	@Override
 	public Delivery assignDelivery(Long deliveryId, Long staffId) {
-        List<Delivery> deliveries = deliveryRepo.load();
-        List<DeliveryStaff> staffList = staffRepo.loadDeliveryStaff();
+		 List<Delivery> deliveries = deliveryRepo.load();
 
-        DeliveryStaff staff = staffList.stream()
-                .filter(s -> s.getStaffId() == staffId)
-                .findFirst()
-                .orElse(null);
+		    DeliveryStaff staff = staffRepo.loadDeliveryStaff().stream()
+		            .filter(s -> s.getStaffId().equals(staffId))
+		            .findFirst()
+		            .orElse(null);
 
-        if (staff == null) return null;
+		    if (staff == null) return null;
 
-        for (Delivery d : deliveries) {
-            if (d.getDeliveryId().equals(deliveryId)) {
-                d.setAssignedStaff(staff);
-                
-                //STATE PATTERN
-                d.setState(new ScheduledState());
+		    for (Delivery d : deliveries) {
+		        if (d.getDeliveryId().equals(deliveryId)) {
 
-                deliveryRepo.save(deliveries);
-                return d;
-            }
-        }
-        return null;
+		            d.setAssignedStaff(staff);
+
+		            //STATE PATTERN
+		            d.schedule();
+
+		            deliveryRepo.save(deliveries);
+		            return d;
+		        }
+		    }
+		    return null;
 	}
-	
-	@Override
-	public Delivery updateStatus(Long deliveryId) {
-	    List<Delivery> list = deliveryRepo.load();
 
-	    for (Delivery d : list) {
+	@Override
+	public Delivery updateStatus(Long deliveryId, Long staffId) {
+		List<Delivery> deliveries = deliveryRepo.load();
+
+	    for (Delivery d : deliveries) {
 	        if (d.getDeliveryId().equals(deliveryId)) {
-	        	
-	        	//Move to next State
-	            d.getState().next(d);
-	            deliveryRepo.save(list);
+
+	            if (d.getAssignedStaff() == null ||
+	                !d.getAssignedStaff().getStaffId().equals(staffId)) {
+
+	                throw new IllegalStateException(
+	                    "Only assigned delivery staff can update status"
+	                );
+	            }
+
+	            //STATE PATTERN
+	            switch (d.getStatus()) {
+	                case "PENDING" -> d.schedule();
+	                case "SCHEDULED" -> d.startDelivery();
+	                case "IN_TRANSIT" -> d.completeDelivery();
+	                default -> throw new IllegalStateException("No further status update allowed");
+	            }
+
+	            deliveryRepo.save(deliveries);
+	            return d;
+	        }
+	    }
+	    return null;
+	}
+
+	@Override
+	public Delivery cancelDelivery(Long deliveryId, Long staffId) {
+		List<Delivery> deliveries = deliveryRepo.load();
+
+	    for (Delivery d : deliveries) {
+	        if (d.getDeliveryId().equals(deliveryId)) {
+
+	            if (d.getAssignedStaff() == null ||
+	                !d.getAssignedStaff().getStaffId().equals(staffId)) {
+	                throw new IllegalStateException(
+	                    "Only assigned staff can cancel delivery"
+	                );
+	            }
+
+	            d.cancel();
+	            deliveryRepo.save(deliveries);
 	            return d;
 	        }
 	    }

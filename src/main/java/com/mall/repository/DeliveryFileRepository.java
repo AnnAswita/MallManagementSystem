@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.mall.model.Delivery;
 import tools.jackson.databind.ObjectMapper;
 
-/**
- * 
- */
+@Repository
 public class DeliveryFileRepository {
 	
 	private static final String FILE_PATH = "src/main/resources/data/deliveries.json";
