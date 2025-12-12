@@ -53,6 +53,8 @@ public class MallManagerServiceImpl implements IMallManagerService {
                 .mapToDouble(Agreement::getRentAmount)
                 .sum();
 
+
+
         // Apply decorators
         IInvoice invoice = new BaseInvoice(baseAmount);
         invoice = new MaintenanceDecorator(invoice, maintenanceFee);

@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class AgreementFileRepository implements IAgreementRepository {
 
-    private static final String FILE_PATH = "src/main/resources/data/agreements.json";
+    private static final String FILE_PATH = "src/main/resources/data/agreement.json";
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override

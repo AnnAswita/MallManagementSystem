@@ -12,13 +12,12 @@ import com.mall.service.interfaces.IShopService;
 import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
  
 import java.util.List;
- 
-@RestController
 
+@RestController
 @RequestMapping("/mall-manager")
 
 public class MallManagerController implements IAgreementService.AgreementObserver {
@@ -54,6 +53,7 @@ public class MallManagerController implements IAgreementService.AgreementObserve
         System.out.println("Mall Manager notified: Agreement " + agreementId + " changed to " + status);
 
     }
+
  
 
     @PostMapping("/agreements")
@@ -67,7 +67,6 @@ public class MallManagerController implements IAgreementService.AgreementObserve
         return agreementService.createAgreement(rentAmount, duration, deposit, conditions, shopId);
 
     }
-
 
     @GetMapping("/shops")
 

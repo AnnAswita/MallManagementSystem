@@ -17,7 +17,8 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public Shop createShop(double area, double rent, String tenantInfo) {
-        List<Shop> shops = shopRepo.loadShops();
+        // List<Shop> shops = shopRepo.loadShops();
+        List<Shop> shops = new java.util.ArrayList<>(shopRepo.loadShops());
         long newId = shops.size() + 1;
 
         Shop shop = new Shop();

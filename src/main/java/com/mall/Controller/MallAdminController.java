@@ -5,11 +5,11 @@ import com.mall.model.Shop;
 import com.mall.service.interfaces.IShopService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.*;
  
 @RestController
-
 @RequestMapping("/mall-admin")
 
 public class MallAdminController {
@@ -18,6 +18,7 @@ public class MallAdminController {
 
     private IShopService shopService;
  
+
     @PostMapping("/add-layout")
 
     public String addMallLayout() {
