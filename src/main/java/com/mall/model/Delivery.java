@@ -5,8 +5,16 @@ package com.mall.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.mall.state.CancelledState;
+import com.mall.state.DeliveredState;
 import com.mall.state.DeliveryState;
+import com.mall.state.InTransitState;
+import com.mall.state.PendingState;
+import com.mall.state.ScheduledState;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Delivery{
 	
     private Long deliveryId;
@@ -20,6 +28,8 @@ public class Delivery{
     private DeliveryStaff assignedStaff;
     private Address address;
     private Goods goods;
+    
+    @JsonIgnore
     private DeliveryState state;
 
 	
@@ -115,6 +125,22 @@ public class Delivery{
 
     public void cancel() {
         state.cancel(this);
+    }
+
+    public void restoreStateFromStatus() {
+        if (this.status == null) {
+            this.state = new PendingState();
+            return;
+        }
+
+        switch (this.status) {
+            case "PENDING" -> this.state = new PendingState();
+            case "SCHEDULED" -> this.state = new ScheduledState();
+            case "IN_TRANSIT" -> this.state = new InTransitState();
+            case "DELIVERED" -> this.state = new DeliveredState();
+            case "CANCELLED" -> this.state = new CancelledState();
+            default -> this.state = new PendingState();
+        }
     }
 
 }

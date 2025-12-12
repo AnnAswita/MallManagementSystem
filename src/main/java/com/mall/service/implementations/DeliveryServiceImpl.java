@@ -14,6 +14,7 @@ import com.mall.repository.DeliveryStaffRepository;
 import com.mall.repository.GoodsRepository;
 import com.mall.repository.ItemRepository;
 import com.mall.service.interfaces.IDeliveryService;
+import com.mall.state.PendingState;
 import com.mall.state.ScheduledState;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +114,10 @@ public class DeliveryServiceImpl implements IDeliveryService{
 		        if (d.getDeliveryId().equals(deliveryId)) {
 
 		            d.setAssignedStaff(staff);
+		            
+		            if (d.getState() == null) {
+		            	d.restoreStateFromStatus();
+		            }
 
 		            //STATE PATTERN
 		            d.schedule();
@@ -129,6 +134,9 @@ public class DeliveryServiceImpl implements IDeliveryService{
 		List<Delivery> deliveries = deliveryRepo.load();
 
 	    for (Delivery d : deliveries) {
+	    	if (d.getState() == null) {
+	            d.restoreStateFromStatus();
+	        }
 	        if (d.getDeliveryId().equals(deliveryId)) {
 
 	            if (d.getAssignedStaff() == null ||
@@ -159,6 +167,11 @@ public class DeliveryServiceImpl implements IDeliveryService{
 		List<Delivery> deliveries = deliveryRepo.load();
 
 	    for (Delivery d : deliveries) {
+	    	
+	    	 if (d.getState() == null) {
+	             d.restoreStateFromStatus();
+	         }
+	    	 
 	        if (d.getDeliveryId().equals(deliveryId)) {
 
 	            if (d.getAssignedStaff() == null ||

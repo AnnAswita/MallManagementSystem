@@ -1,25 +1,37 @@
-[
-  {
-    "deliveryId": 1,
-    "status": "Created",
-    "invoice": "INV-001",
-    "summary": "Inbound delivery - stock arrival",
-    "addressId": 101,
-    "goodsId": 201,
-    "items": [],
-    "assignedStaffId": null
+[ {
+  "assignedStaff" : {
+    "name" : "Cory Wilson",
+    "emailId" : "cory.wilson@mall.com",
+    "role" : "DELIVERY_STAFF",
+    "staffId" : 27
   },
-  {
-    "deliveryId": 2,
-    "status": "Assigned",
-    "invoice": "INV-002",
-    "summary": "Outbound shipment to retail unit",
-    "addressId": 102,
-    "goodsId": null,
-    "items": [
-      { "itemId": 301, "quantity": 10 },
-      { "itemId": 302, "quantity": 5 }
-    ],
-    "assignedStaffId": 3
-  }
-]
+  "deliveryId" : 1,
+  "invoice" : "INV-001",
+  "items" : [ ],
+  "status" : "IN_TRANSIT",
+  "summary" : "Inbound delivery - stock arrival",
+  "weight" : 0.0
+}, {
+  "assignedStaff" : {
+    "name" : "James Wilson",
+    "emailId" : "james.wilson@mall.com",
+    "role" : "DELIVERY_STAFF",
+    "staffId" : 3
+  },
+  "deliveryId" : 2,
+  "invoice" : "INV-002",
+  "items" : [ {
+    "itemId" : 301,
+    "name" : null,
+    "quantity" : 10,
+    "type" : null
+  }, {
+    "itemId" : 302,
+    "name" : null,
+    "quantity" : 5,
+    "type" : null
+  } ],
+  "status" : "DELIVERED",
+  "summary" : "Outbound shipment to retail unit",
+  "weight" : 0.0
+} ]
