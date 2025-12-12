@@ -1,3 +1,4 @@
+//Author Ann Aswita 
 package com.mall.controller;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,12 +19,12 @@ public class DeliveryController {
     private final IDeliveryService deliveryService;
    // private final ILogisticsService logisticsService;
 
-    public DeliveryController(IDeliveryService deliveryService, ILogisticsService logisticsService) {
+    public DeliveryController(IDeliveryService deliveryService) {
         this.deliveryService = deliveryService;
        // this.logisticsService = logisticsService;
     }
 
-    @PutMapping("/{id}/status")
+    @PutMapping("/{id}/status") //needs to be MODIFIED to match STATE pattern
     public String updateStatus(@PathVariable Long id, @RequestParam String status) {
         CommandInvoker invoker = new CommandInvoker();
         UpdateStatusCommand cmd = new UpdateStatusCommand(deliveryService, id);

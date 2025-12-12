@@ -1,3 +1,4 @@
+//Author Ann Aswita 
 package com.mall.controller;
 
 import java.util.List;
@@ -15,24 +16,18 @@ import com.mall.service.interfaces.INotificationService;
 
 @RestController
 @RequestMapping("/shopmanager")
-public class ShopManagerController {
+public class ShopManagerLogisticsController {
 
     private final IDeliveryService deliveryService;
     //private final INotificationService notificationService;
 
-    public ShopManagerController(IDeliveryService deliveryService, INotificationService notificationService) {
+    public ShopManagerLogisticsController(IDeliveryService deliveryService, INotificationService notificationService) {
         this.deliveryService = deliveryService;
         //this.notificationService = notificationService;
     }
 
     @PostMapping("/requestDelivery")
-    public Delivery requestDelivery(@RequestParam Long goodsId,
-    								@RequestParam Long addressId,
-    								@RequestParam String type,
-                                    @RequestParam double weightKg,
-                                    @RequestParam String sizeCategory,
-                                    @RequestParam List<Long> itemIds,
-                                    @RequestParam String logisticsManagerID) {
+    public Delivery requestDelivery(@RequestParam Long goodsId,@RequestParam Long addressId,@RequestParam String type,@RequestParam double weightKg, @RequestParam String sizeCategory,@RequestParam List<Long> itemIds,@RequestParam String logisticsManagerID) {
     	//IDeliveryService deliveryService,Long goodsId, Long addressId, String type, double weight, String size, List<Long> itemIds
         // Use Command pattern to create delivery
         CommandInvoker invoker = new CommandInvoker();

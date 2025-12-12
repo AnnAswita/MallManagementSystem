@@ -1,3 +1,4 @@
+//Author Ann Aswita
 package com.mall.model;
 
 public abstract class Staff {

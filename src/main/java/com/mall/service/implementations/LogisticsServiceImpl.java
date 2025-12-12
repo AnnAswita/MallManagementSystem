@@ -1,3 +1,4 @@
+// Author: Ann Aswita
 package com.mall.service.implementations;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class LogisticsServiceImpl implements ILogisticsService {
         // Notify staff via observer pattern
         //notificationService.notifyObserver(staffId, "You have been assigned to delivery " + deliveryID);
 
-        return deliveryService.getDelivery(deliveryId);
+        return d;
     }
 
     @Override
