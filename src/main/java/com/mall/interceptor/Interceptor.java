@@ -3,6 +3,7 @@
  */
 package com.mall.interceptor;
 
+import com.mall.interceptor.context.DeliveryContext;
 
 public interface Interceptor {
 	
