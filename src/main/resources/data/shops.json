@@ -1,0 +1,25 @@
+[ {
+  "shopID" : 1,
+  "area" : 120.5,
+  "rent" : 1500.0,
+  "tenantInfo" : "ABC Fashion Store",
+  "agreements" : null
+}, {
+  "shopID" : 2,
+  "area" : 150.0,
+  "rent" : 3000.0,
+  "tenantInfo" : "Updated Tenant",
+  "agreements" : null
+}, {
+  "shopID" : 3,
+  "area" : 60.0,
+  "rent" : 900.0,
+  "tenantInfo" : "Home Decor Mart",
+  "agreements" : null
+}, {
+  "shopID" : 4,
+  "area" : 100.0,
+  "rent" : 5000.0,
+  "tenantInfo" : "goods",
+  "agreements" : null
+} ]

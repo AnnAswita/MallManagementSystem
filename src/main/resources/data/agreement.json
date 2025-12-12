@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "rentAmount": 1500.0,
+    "duration": "12 months",
+    "deposit": 3000.0,
+    "conditions": "No subletting allowed",
+    "shopId": 1
+  },
+  {
+    "id": 2,
+    "rentAmount": 1200.0,
+    "duration": "6 months",
+    "deposit": 2400.0,
+    "conditions": "Maintenance included",
+    "shopId": 2
+  },
+  {
+    "id": 3,
+    "rentAmount": 900.0,
+    "duration": "12 months",
+    "deposit": 1800.0,
+    "conditions": "Maintenance included",
+    "shopId": 3
+  }
+]
