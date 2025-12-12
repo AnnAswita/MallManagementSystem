@@ -8,7 +8,7 @@
   "deliveryId" : 1,
   "invoice" : "INV-001",
   "items" : [ ],
-  "status" : "IN_TRANSIT",
+  "status" : "pending",
   "summary" : "Inbound delivery - stock arrival",
   "weight" : 0.0
 }, {
