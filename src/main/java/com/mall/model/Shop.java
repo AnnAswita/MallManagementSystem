@@ -1,3 +1,6 @@
+/**
+ * Author: Neha
+ */
 package com.mall.model;
 
 import java.util.List;

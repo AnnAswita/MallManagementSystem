@@ -1,6 +1,10 @@
+/**
+ * Author: Neha
+ */
 package com.mall.service.implementations;
 
 import com.mall.model.Agreement;
+import com.mall.model.AgreementStatus;
 import com.mall.repository.IAgreementRepository;
 import com.mall.service.interfaces.IAgreementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +43,8 @@ public class AgreementServiceImpl implements IAgreementService {
         ag.setConditions(conditions);
         ag.setShopId(shopId);
 
+        ag.setStatus(AgreementStatus.PENDING);
+
         try {
             var f = Agreement.class.getDeclaredField("id");
             f.setAccessible(true);
@@ -49,7 +55,7 @@ public class AgreementServiceImpl implements IAgreementService {
         agreeRepo.saveAgreements(agreements);
 
   
-        notifyObservers(newId, "SIGNED");
+        notifyObservers(newId, ag.getStatus().name());
 
         return ag;
     }
@@ -71,6 +77,25 @@ public class AgreementServiceImpl implements IAgreementService {
 
             agreeRepo.saveAgreements(agreements);
             notifyObservers(agreementId, "UPDATED"); // Notify observers
+            return ag;
+        } else {
+            return null; // or throw exception
+        }
+    }
+
+    @Override
+    public Agreement updateAgreementStatus(long agreementId, AgreementStatus status) {
+        List<Agreement> agreements = agreeRepo.loadAgreements();
+        Optional<Agreement> existing = agreements.stream()
+                .filter(a -> a.getId() == agreementId)
+                .findFirst();
+
+        if (existing.isPresent()) {
+            Agreement ag = existing.get();
+            ag.setStatus(status);
+
+            agreeRepo.saveAgreements(agreements);
+            notifyObservers(agreementId, status.name()); // Notify observers
             return ag;
         } else {
             return null; // or throw exception
