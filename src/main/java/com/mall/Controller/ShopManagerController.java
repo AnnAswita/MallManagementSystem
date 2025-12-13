@@ -1,7 +1,10 @@
+/**
+ * Author: Neha , Sumayya
+ */
 package com.mall.controller;
  
 import com.mall.model.Agreement;
-
+import com.mall.model.AgreementStatus;
 import com.mall.model.Shop;
 
 import com.mall.service.interfaces.IShopManagerService;
@@ -12,14 +15,13 @@ import com.mall.service.interfaces.IAgreementService;
 import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
  
 import java.util.List;
  
 @RestController
-// @Controller
+
 @RequestMapping("/shop-manager")
 
 public class ShopManagerController implements IAgreementService.AgreementObserver {

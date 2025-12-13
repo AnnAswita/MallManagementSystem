@@ -1,4 +1,9 @@
+/**
+ * Author: Neha
+ */
 package com.mall.model;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 
 public class Agreement {
 
@@ -7,17 +12,23 @@ public class Agreement {
     private String duration;
     private double deposit;
     private String conditions;
-    private Long shopId; // Instead of Shop object
+    private Long shopId; 
+
+    @Enumerated(EnumType.STRING)
+    private AgreementStatus status = AgreementStatus.PENDING; 
+
 
     public Agreement() {}
 
-    public Agreement(Long id, double rentAmount, String duration, double deposit, String conditions, Long shopId) {
+    public Agreement(Long id, double rentAmount, String duration, double deposit, String conditions, Long shopId, AgreementStatus status) {
         this.id = id;
         this.rentAmount = rentAmount;
         this.duration = duration;
         this.deposit = deposit;
         this.conditions = conditions;
         this.shopId = shopId;
+        this.status = status;
+
     }
 
     public Long getId() { return id; }
@@ -37,4 +48,7 @@ public class Agreement {
 
     public Long getShopId() { return shopId; }
     public void setShopId(Long shopId) { this.shopId = shopId; }
+
+    public AgreementStatus getStatus() { return status; }
+    public void setStatus(AgreementStatus status) { this.status = status; }
 }

@@ -1,7 +1,10 @@
+/**
+ * Author: Neha , Sumayya
+ */
 package com.mall.controller;
  
 import com.mall.model.Agreement;
-
+import com.mall.model.AgreementStatus;
 import com.mall.model.Shop;
 
 import com.mall.service.interfaces.IMallManagerService;
@@ -12,7 +15,6 @@ import com.mall.service.interfaces.IShopService;
 import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
  
 import java.util.List;
@@ -66,6 +68,13 @@ public class MallManagerController implements IAgreementService.AgreementObserve
 
         return agreementService.createAgreement(rentAmount, duration, deposit, conditions, shopId);
 
+    }
+
+    @PutMapping("/agreements/{agreementId}/status")
+    
+    public Agreement updateAgreementStatus(@PathVariable long agreementId,
+                                           @RequestParam AgreementStatus status) {
+        return agreementService.updateAgreementStatus(agreementId, status);
     }
 
     @GetMapping("/shops")
