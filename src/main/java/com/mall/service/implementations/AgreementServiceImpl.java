@@ -27,7 +27,7 @@ public class AgreementServiceImpl implements IAgreementService {
         observers.add(observer);
     }
 
-    private void notifyObservers(Long agreementId, String status) {
+    private void notifyObservers(Long agreementId, AgreementStatus status) {
         observers.forEach(o -> o.updateAgreementStatus(agreementId, status));
     }
     //create agreement
@@ -55,7 +55,7 @@ public class AgreementServiceImpl implements IAgreementService {
         agreeRepo.saveAgreements(agreements);
 
   
-        notifyObservers(newId, ag.getStatus().name());
+        notifyObservers(newId, ag.getStatus());
 
         return ag;
     }
@@ -76,7 +76,6 @@ public class AgreementServiceImpl implements IAgreementService {
             ag.setConditions(conditions);
 
             agreeRepo.saveAgreements(agreements);
-            notifyObservers(agreementId, "UPDATED"); // Notify observers
             return ag;
         } else {
             return null; // or throw exception
@@ -95,7 +94,7 @@ public class AgreementServiceImpl implements IAgreementService {
             ag.setStatus(status);
 
             agreeRepo.saveAgreements(agreements);
-            notifyObservers(agreementId, status.name()); // Notify observers
+            notifyObservers(agreementId, status); // Notify observers
             return ag;
         } else {
             return null; // or throw exception

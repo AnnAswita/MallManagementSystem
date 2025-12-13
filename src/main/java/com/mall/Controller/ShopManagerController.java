@@ -53,7 +53,7 @@ public class ShopManagerController implements IAgreementService.AgreementObserve
 
     @Override
 
-    public void updateAgreementStatus(Long agreementId, String status) {
+    public void updateAgreementStatus(Long agreementId, AgreementStatus status) {
 
         System.out.println("Shop Manager notified: Agreement " + agreementId + " status changed to " + status);
 

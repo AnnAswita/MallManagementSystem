@@ -23,7 +23,7 @@ public interface IAgreementService {
 
     // Observer interface
     interface AgreementObserver {
-        void updateAgreementStatus(Long agreementId, String status);
+        void updateAgreementStatus(Long agreementId, AgreementStatus status);
     }
 
     void registerObserver(AgreementObserver observer);

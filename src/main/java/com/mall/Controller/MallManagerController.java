@@ -50,7 +50,7 @@ public class MallManagerController implements IAgreementService.AgreementObserve
 
     @Override
 
-    public void updateAgreementStatus(Long agreementId, String status) {
+    public void updateAgreementStatus(Long agreementId, AgreementStatus status) {
 
         System.out.println("Mall Manager notified: Agreement " + agreementId + " changed to " + status);
 
