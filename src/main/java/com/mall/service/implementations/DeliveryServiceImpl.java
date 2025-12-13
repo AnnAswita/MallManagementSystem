@@ -3,6 +3,9 @@ package com.mall.service.implementations;
 
 import com.mall.factory.DeliveryFactory;
 import com.mall.factory.DeliveryFactoryProvider;
+import com.mall.interceptor.DeliveryLoggingInterceptor;
+import com.mall.interceptor.Dispatcher;
+import com.mall.interceptor.context.DeliveryContext;
 import com.mall.model.Address;
 import com.mall.model.Delivery;
 import com.mall.model.DeliveryStaff;
@@ -154,8 +157,14 @@ public class DeliveryServiceImpl implements IDeliveryService{
 	                case "IN_TRANSIT" -> d.completeDelivery();
 	                default -> throw new IllegalStateException("No further status update allowed");
 	            }
-
 	            deliveryRepo.save(deliveries);
+	            
+	            //Interceptor Integration
+	            DeliveryContext context = new DeliveryContext(d, staffId);
+	            Dispatcher dispatcher = new Dispatcher();
+	            dispatcher.attach(new DeliveryLoggingInterceptor());
+	            dispatcher.dispatch(context);
+	            
 	            return d;
 	        }
 	    }
